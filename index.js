@@ -51,7 +51,6 @@ window.addEventListener('DOMContentLoaded', function () {
   tokens.forEach(token => viewport.appendChild(token.el))
 
   viewport.addEventListener('click', function (e) {
-    console.log({ btn: e.button })
     switch (e.button) {
       case 0:
         window.dispatchEvent(new TokenSelectedEvent(null))
@@ -69,10 +68,9 @@ window.addEventListener('DOMContentLoaded', function () {
   })
 
   window.addEventListener(TokenSelectedEvent.KEY, function (e) {
+    selected = e.token
     tokens.forEach(token => {
-      if (token.selected = e.token && token.el === e.token.el) {
-        selected = token
-      }
+      token.selected = e.token && token.el === e.token.el
     })
 
     ui.innerText = e.token ? `Selected: ${e.token.id}` : null
